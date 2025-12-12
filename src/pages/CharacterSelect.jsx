@@ -6,6 +6,10 @@ import ranger from "../assets/ranger.png";
 import elf from "../assets/elf.png";
 import dwarf from "../assets/dwarf.png";
 import shifter from "../assets/shifter.png";
+import assassin from "../assets/assassin.png";
+import friar from "../assets/friar.png";
+import dragonkin from "../assets/dragonkin.png";
+import sorcerer from "../assets/sorcerer.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -97,6 +101,66 @@ const characters = [
       attack: 80,
       defense: 50,
       speed: 90,
+    },
+  },
+  {
+    id: "friar",
+    title: "Friar",
+    name: "Alaric",
+    image: friar,
+    description:
+      "A wise friar with healing capabilities and a deep connection to nature.",
+    abilities: ["Unlock Friar", "Unlock Friar"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+  },
+  {
+    id: "assassin",
+    title: "Assassin",
+    name: "Zara",
+    image: assassin,
+    description:
+      "An assassin whose stealth and intelligence is unmatched.",
+    abilities: ["Unlock Assassin", "Unlock Assassin"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+  },
+  {
+    id: "sorcerer",
+    title: "Sorcerer",
+    name: "Vespero",
+    image: sorcerer,
+    description:
+      "A master of binding spells with power of the runes on his side.",
+    abilities: ["Unlock Sorcerer", "Unlock Sorcerer"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+  },
+  {
+    id: "dragonkin",
+    title: "Dragonkin",
+    name: "Drakkon",
+    image: dragonkin,
+    description:
+      "A fierce dragonkin warrior who pulls strength from the underworld.",
+    abilities: ["Unlock Dragonkin", "Unlock Dragonkin"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
     },
   },
 ];
