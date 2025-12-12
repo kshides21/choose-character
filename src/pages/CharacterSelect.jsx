@@ -27,20 +27,6 @@ const characters = [
     },
   },
   {
-    id: "mage",
-    title: "Mage",
-    name: "Sorrel",
-    image: mage,
-    description: "A master of arcane arts with devastating spell power.",
-    abilities: ["Fireball", "Arcane Shield"],
-    stats: {
-      hp: 50,
-      attack: 100,
-      defense: 30,
-      speed: 60,
-    },
-  },
-  {
     id: "shifter",
     title: "Shifter",
     name: "Dahlia",
@@ -52,6 +38,20 @@ const characters = [
       attack: 75,
       defense: 65,
       speed: 80,
+    },
+  },
+  {
+    id: "mage",
+    title: "Mage",
+    name: "Sorrel",
+    image: mage,
+    description: "A master of arcane arts with devastating spell power.",
+    abilities: ["Fireball", "Arcane Shield"],
+    stats: {
+      hp: 50,
+      attack: 100,
+      defense: 30,
+      speed: 60,
     },
   },
   {
