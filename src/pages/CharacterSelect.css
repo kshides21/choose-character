@@ -202,6 +202,12 @@
   border-color: #888;
 }
 
+.character-locked {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;

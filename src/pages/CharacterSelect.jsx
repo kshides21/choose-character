@@ -110,7 +110,7 @@ const characters = [
     image: friar,
     description:
       "A wise friar with healing capabilities and a deep connection to nature.",
-    abilities: ["Unlock Friar", "Unlock Friar"],
+    abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
       attack: 0,
@@ -125,7 +125,7 @@ const characters = [
     image: assassin,
     description:
       "An assassin whose stealth and intelligence is unmatched.",
-    abilities: ["Unlock Assassin", "Unlock Assassin"],
+    abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
       attack: 0,
@@ -140,7 +140,7 @@ const characters = [
     image: sorcerer,
     description:
       "A master of binding spells with power of the runes on his side.",
-    abilities: ["Unlock Sorcerer", "Unlock Sorcerer"],
+    abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
       attack: 0,
@@ -155,7 +155,7 @@ const characters = [
     image: dragonkin,
     description:
       "A fierce dragonkin warrior who pulls strength from the underworld.",
-    abilities: ["Unlock Dragonkin", "Unlock Dragonkin"],
+    abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
       attack: 0,
@@ -199,6 +199,8 @@ const SimpleSlider = ({ selected, setSelected }) => {
           <div
             className={`character-card ${
               selected === char.id ? "selected" : ""
+            } ${
+              char.id === "dragonkin" || char.id === "sorcerer" || char.id === "assassin" || char.id === "friar" ? "character-locked" : ""
             }`}
             onClick={() => setSelected(char.id)}
           >
