@@ -147,6 +147,8 @@
   transform: translateY(10px);
   pointer-events: none;
   transition: 0.35s ease;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
 }
 
 .hover-info {
@@ -154,7 +156,10 @@
   transform: translateY(10px);
   pointer-events: none;
   transition: 0.35s ease;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
 }
+
 
 .character-card:hover .hover-info {
   opacity: 1;
@@ -164,7 +169,7 @@
 .hover-name {
   font-size: 22px;
   font-weight: bold;
-  margin-top: 14px;
+  padding-top: 14px;
 }
 
 .hover-desc {
@@ -176,8 +181,11 @@
 .hover-abilities {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 6px;
   margin-top: 8px;
+  padding-bottom: 12px;
 }
 
 .ability {
@@ -187,6 +195,7 @@
   font-size: 14px;
   border: 1px solid #444;
   transition: 0.25s ease;
+  width: 70%;
 }
 
 .character-card:hover .ability {
@@ -238,6 +247,12 @@
   }
 }
 
+@media (max-width: 992px) {
+  .character-card {
+    max-height: 550px;
+  }
+}
+
 @media (max-width: 768px) {
   .character-card .hover-info,
   .character-card .selected-info {
@@ -246,8 +261,11 @@
     pointer-events: auto;
     position: static;
     transform: none;
-    background: rgba(0, 0, 0, 0.7); /* Optional: for readability */
+    background: rgba(0, 0, 0, 0.3);
     color: #fff;
     z-index: 1;
+  }
+  .character-card {
+    margin: 24px;
   }
 }

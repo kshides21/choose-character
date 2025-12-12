@@ -31,7 +31,8 @@ const characters = [
     title: "Shifter",
     name: "Dahlia",
     image: shifter,
-    description: "A jack of all trades with shapeshifting abilities and cunning damage abilities.",
+    description:
+      "A jack of all trades with shapeshifting abilities and cunning damage potential.",
     abilities: ["Fiery Beauty", "Severing Heads"],
     stats: {
       hp: 70,
@@ -59,7 +60,8 @@ const characters = [
     title: "Elf",
     name: "Faelyn",
     image: elf,
-    description: "A stealthy elf with agility and precision guided by the Elvish spirits.",
+    description:
+      "A stealthy elf with agility and precision guided by the Elvish spirits.",
     abilities: ["Shadow Strike", "Nature's Grasp"],
     stats: {
       hp: 55,
@@ -87,7 +89,8 @@ const characters = [
     title: "Ranger",
     name: "Thalion",
     image: ranger,
-    description: "A swift ranger with remarkable stealth, versatility, and keen senses.",
+    description:
+      "A swift ranger with remarkable stealth, versatility, and keen senses.",
     abilities: ["Rapid Shot", "Eagle Eye"],
     stats: {
       hp: 65,
@@ -98,34 +101,33 @@ const characters = [
   },
 ];
 
-function SimpleSlider({ selected, setSelected }) {
+function getSlidesToShow(width) {
+  if (width <= 768) return 1;
+  if (width <= 992) return 2;
+  if (width <= 1224) return 3;
+  return 4;
+}
+
+const SimpleSlider = ({ selected, setSelected }) => {
+  const [slidesToShow, setSlidesToShow] = useState(
+    getSlidesToShow(window.innerWidth)
+  );
+
+  useEffect(() => {
+    const handleResize = () =>
+      setSlidesToShow(getSlidesToShow(window.innerWidth));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1224,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
+
   return (
     <Slider {...settings} className="character-slider">
       {characters.map((char) => (
@@ -160,23 +162,27 @@ function SimpleSlider({ selected, setSelected }) {
       ))}
     </Slider>
   );
-}
+};
 
 export default function CharacterSelect() {
   const [selected, setSelected] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 100);
-    return () => clearTimeout(timeout);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="character-screen">
-      <h1 className="title">Choose Your Character</h1>
+      <h1 className="title">Choose Your Hero</h1>
 
-      <SimpleSlider selected={selected} setSelected={setSelected} />
+      <SimpleSlider
+        selected={selected}
+        setSelected={setSelected}
+        key={windowWidth}
+      />
 
       {selected && (
         <div className="stats-panel">
