@@ -269,3 +269,9 @@
     margin: 24px;
   }
 }
+
+@media (max-width: 512px) {
+  .character-card {
+    margin: 0px;
+  }
+}
