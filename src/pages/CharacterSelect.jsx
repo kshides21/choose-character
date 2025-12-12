@@ -41,11 +41,25 @@ const characters = [
     },
   },
   {
+    id: "shifter",
+    title: "Shifter",
+    name: "Dahlia",
+    image: shifter,
+    description: "A jack of all trades with shapeshifting abilities and cunning damage abilities.",
+    abilities: ["Fiery Beauty", "Severing Heads"],
+    stats: {
+      hp: 70,
+      attack: 75,
+      defense: 65,
+      speed: 80,
+    },
+  },
+  {
     id: "elf",
     title: "Elf",
     name: "Faelyn",
     image: elf,
-    description: "A stealthy elf with unmatched agility and precision.",
+    description: "A stealthy elf with agility and precision guided by the Elvish spirits.",
     abilities: ["Shadow Strike", "Nature's Grasp"],
     stats: {
       hp: 55,
@@ -73,27 +87,13 @@ const characters = [
     title: "Ranger",
     name: "Thalion",
     image: ranger,
-    description: "A swift archer with remarkable agility and precision.",
+    description: "A swift ranger with remarkable stealth, versatility, and keen senses.",
     abilities: ["Rapid Shot", "Eagle Eye"],
     stats: {
       hp: 65,
       attack: 80,
       defense: 50,
       speed: 90,
-    },
-  },
-  {
-    id: "shifter",
-    title: "Shifter",
-    name: "Dahlia",
-    image: shifter,
-    description: "A jack of all trades with shapeshifting abilities.",
-    abilities: ["Fiery Beauty", "Severing Heads"],
-    stats: {
-      hp: 70,
-      attack: 75,
-      defense: 65,
-      speed: 80,
     },
   },
 ];
@@ -138,9 +138,11 @@ function SimpleSlider({ selected, setSelected }) {
           >
             <h2 className="character-name">{char.title}</h2>
             <img src={char.image} alt={char.name} className="character-img" />
-            <div className={`${
-              selected === char.id ? "selected-info" : "hover-info"
-            }`}>
+            <div
+              className={`${
+                selected === char.id ? "selected-info" : "hover-info"
+              }`}
+            >
               <h2 className="hover-name">{char.name}</h2>
               <p className="hover-desc">{char.description}</p>
 
@@ -164,7 +166,10 @@ export default function CharacterSelect() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    window.dispatchEvent(new Event("resize"));
+    const timeout = setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
