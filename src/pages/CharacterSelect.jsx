@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./CharacterSelect.css";
 import warrior from "../assets/warrior.png";
 import mage from "../assets/mage.png";
@@ -36,7 +36,7 @@ const characters = [
     name: "Dahlia",
     image: shifter,
     description:
-      "A jack of all trades with shapeshifting abilities and cunning damage potential.",
+      "A unique sorceress with shapeshifting abilities and cunning damage potential.",
     abilities: ["Fiery Beauty", "Severing Heads"],
     stats: {
       hp: 70,
@@ -123,8 +123,7 @@ const characters = [
     title: "Assassin",
     name: "Zara",
     image: assassin,
-    description:
-      "An assassin whose stealth and intelligence is unmatched.",
+    description: "An assassin whose stealth and intelligence is unmatched.",
     abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
@@ -153,8 +152,7 @@ const characters = [
     title: "Dragonkin",
     name: "Drakkon",
     image: dragonkin,
-    description:
-      "A fierce dragonkin warrior who pulls strength from the underworld.",
+    description: "A dragonkin warrior who pulls strength from the underworld.",
     abilities: ["Unlock to View", "Abilities"],
     stats: {
       hp: 0,
@@ -200,7 +198,12 @@ const SimpleSlider = ({ selected, setSelected }) => {
             className={`character-card ${
               selected === char.id ? "selected" : ""
             } ${
-              char.id === "dragonkin" || char.id === "sorcerer" || char.id === "assassin" || char.id === "friar" ? "character-locked" : ""
+              char.id === "dragonkin" ||
+              char.id === "sorcerer" ||
+              char.id === "assassin" ||
+              char.id === "friar"
+                ? "character-locked"
+                : ""
             }`}
             onClick={() => setSelected(char.id)}
           >
@@ -209,6 +212,13 @@ const SimpleSlider = ({ selected, setSelected }) => {
             <div
               className={`${
                 selected === char.id ? "selected-info" : "hover-info"
+              } ${
+                char.id === "dragonkin" ||
+                char.id === "sorcerer" ||
+                char.id === "assassin" ||
+                char.id === "friar"
+                  ? "abilities-locked"
+                  : ""
               }`}
             >
               <h2 className="hover-name">{char.name}</h2>
@@ -240,6 +250,8 @@ export default function CharacterSelect() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const selectedCharacter = characters.find((c) => c.id === selected);
+
   return (
     <div className="character-screen">
       <h1 className="title">Choose Your Hero</h1>
@@ -250,14 +262,11 @@ export default function CharacterSelect() {
         key={windowWidth}
       />
 
-      {selected && (
+      {selectedCharacter && (
         <div className="stats-panel">
           <h2 className="stats-title">Character Stats</h2>
-
           <div className="stats-list">
-            {Object.entries(
-              characters.find((c) => c.id === selected).stats
-            ).map(([key, value]) => (
+            {Object.entries(selectedCharacter.stats).map(([key, value]) => (
               <div key={key} className="stat-row">
                 <span className="stat-label">{key.toUpperCase()}</span>
                 <div className="stat-bar">

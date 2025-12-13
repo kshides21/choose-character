@@ -4,6 +4,8 @@
   color: white;
   padding: 40px;
   text-align: center;
+  animation: fadeIn 0.7s ease forwards;
+  opacity: 0;
 }
 
 .title {
@@ -158,6 +160,10 @@
   transition: 0.35s ease;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
+}
+
+.abilities-locked {
+  opacity: 1;
 }
 
 
