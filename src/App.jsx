@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react';
+import "./index.css";
 import CharacterSelect from './pages/CharacterSelect';
 import TitleScreen from './pages/TitleScreen';
 import PlayerSetup from './pages/PlayerIntro';
@@ -22,7 +23,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className={`app-root ${theme}`}>
       {gamePhase === "title" && (
         <ScreenFade active={activePhase === "title"}>
           <TitleScreen
@@ -35,13 +36,14 @@ export default function App() {
 
       {gamePhase === "intro" && (
         <ScreenFade active={activePhase === "intro"}>
-          <IntroScreen onContinue={() => transitionTo("playerSetup")} />
+          <IntroScreen theme={theme} onContinue={() => transitionTo("playerSetup")} />
         </ScreenFade>
       )}
 
       {gamePhase === "playerSetup" && (
         <ScreenFade active={activePhase === "playerSetup"}>
           <PlayerSetup
+            theme={theme}
             playerName={playerName}
             setPlayerName={setPlayerName}
             onContinue={() => transitionTo("characterSelect")}
@@ -51,10 +53,10 @@ export default function App() {
 
       {gamePhase === "characterSelect" && (
         <ScreenFade active={activePhase === "characterSelect"}>
-          <CharacterSelect />
+          <CharacterSelect theme={theme} />
         </ScreenFade>
       )}
-    </>
+    </div>
   );
 }
 

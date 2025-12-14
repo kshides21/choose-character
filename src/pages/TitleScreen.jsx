@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import React from "react";
 import "./TitleScreen.css";
+import "../index.css";
 import { TbMusic, TbMusicOff } from "react-icons/tb";
 import header from "../assets/title.png";
 import menuMusic from "../music/menu.mp3";

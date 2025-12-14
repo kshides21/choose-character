@@ -1,7 +1,7 @@
 .character-screen {
   min-height: 100vh;
-  background-color: #0a0a0d;
-  color: white;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   padding: 40px;
   text-align: center;
   animation: fadeIn 0.7s ease forwards;
@@ -165,7 +165,6 @@
 .abilities-locked {
   opacity: 1;
 }
-
 
 .character-card:hover .hover-info {
   opacity: 1;
