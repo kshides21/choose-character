@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import queen from "../assets/queen.png";
-import army from "../assets/army.png";
-import united from "../assets/united.png";
+import queen from "../assets/queen.webp";
+import army from "../assets/army.webp";
+import united from "../assets/united.webp";
 import "./IntroScreen.css";
 import "../index.css";
 import { TbMusic, TbMusicOff } from "react-icons/tb";
 import introMusic from "../music/story.mp3";
+import { FaCircle } from "react-icons/fa";
 
 const slides = [
   {
@@ -28,12 +29,21 @@ export default function IntroScreen({ theme, onContinue }) {
   const [index, setIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(null);
   const [musicOn, setMusicOn] = useState(false);
+  const [imagesReady, setImagesReady] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
+    let loaded = 0;
+
     slides.forEach((slide) => {
       const img = new Image();
       img.src = slide.image;
+      img.onload = () => {
+        loaded += 1;
+        if (loaded === slides.length) {
+          setImagesReady(true);
+        }
+      };
     });
   }, []);
 
@@ -93,7 +103,19 @@ export default function IntroScreen({ theme, onContinue }) {
         </div>
       )}
 
-      {started && (
+      {started && !imagesReady && (
+        <div className="loading-overlay">
+          <h1>Dark magic is brewing</h1>
+          <br />
+          <div className="dot-wrapper">
+            <FaCircle className="loading-icon one" />
+            <FaCircle className="loading-icon two" />
+            <FaCircle className="loading-icon three" />
+          </div>
+        </div>
+      )}
+
+      {started && imagesReady && (
         <div className="intro-content">
           <div className="image-wrapper">
             <div className="image-frame">

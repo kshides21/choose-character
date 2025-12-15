@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import "./CharacterSelect.css";
-import warrior from "../assets/warrior.png";
-import mage from "../assets/mage.png";
-import ranger from "../assets/ranger.png";
-import elf from "../assets/elf.png";
-import dwarf from "../assets/dwarf.png";
-import shifter from "../assets/shifter.png";
-import assassin from "../assets/assassin.png";
-import friar from "../assets/friar.png";
-import dragonkin from "../assets/dragonkin.png";
-import sorcerer from "../assets/sorcerer.png";
+import warrior from "../assets/warrior.webp";
+import mage from "../assets/mage.webp";
+import ranger from "../assets/ranger.webp";
+import elf from "../assets/elf.webp";
+import dwarf from "../assets/dwarf.webp";
+import shifter from "../assets/shifter.webp";
+import assassin from "../assets/assassin.webp";
+import friar from "../assets/friar.webp";
+import dragonkin from "../assets/dragonkin.webp";
+import sorcerer from "../assets/sorcerer.webp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -287,7 +287,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
   );
 };
 
-export default function CharacterSelect( {theme, playerName} ) {
+export default function CharacterSelect({ theme, playerName }) {
   const [selected, setSelected] = useState(null);
   const [beginChoose, setBeginChoose] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -303,78 +303,88 @@ export default function CharacterSelect( {theme, playerName} ) {
   const selectedCharacter = characters.find((c) => c.id === selected);
 
   useEffect(() => {
-      audioRef.current = new Audio(characterMusic);
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.5;
-  
-      return () => {
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current = null;
-        }
-      };
-    }, []);
-  
-    useEffect(() => {
-      if (!audioRef.current) return;
-  
-      if (musicOn) {
-        audioRef.current.play();
-      } else {
+    audioRef.current = new Audio(characterMusic);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
+    return () => {
+      if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current = null;
       }
-    }, [musicOn]);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (musicOn) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [musicOn]);
 
   return (
     <div className="character-screen">
       {!beginChoose && (
         <div className="intro-overlay">
-          <h1 className="character-plead">Get ready to take down the Queen, {playerName}! Ashfell is counting on you.</h1>
-          <button className="begin-btn" onClick={() => {
-            setMusicOn(true);
-            setBeginChoose(true);
-          }}>
+          <h1 className="character-plead">
+            Get ready to take down the Queen, {playerName}! Ashfell is counting
+            on you.
+          </h1>
+          <button
+            className="begin-btn"
+            onClick={() => {
+              setMusicOn(true);
+              setBeginChoose(true);
+            }}
+          >
             Embark
           </button>
         </div>
       )}
-      {beginChoose && (<div>
-        <h1 className="title">Choose Your Hero</h1>
+      {beginChoose && (
+        <div>
+          <h1 className="title">Choose Your Hero</h1>
 
-      <SimpleSlider
-        selected={selected}
-        setSelected={setSelected}
-        key={windowWidth}
-      />
+          <SimpleSlider
+            selected={selected}
+            setSelected={setSelected}
+            key={windowWidth}
+          />
 
-      {selectedCharacter && (
-        <div className="stats-panel">
-          <h2 className="stats-title">Character Stats</h2>
-          <div className="stats-list">
-            {Object.entries(selectedCharacter.stats).map(([key, value]) => (
-              <div key={key} className="stat-row">
-                <span className="stat-label">{key.toUpperCase()}</span>
-                <div className="stat-bar">
-                  <div
-                    className="stat-fill"
-                    style={{ width: `${value}%` }}
-                  ></div>
-                </div>
-                <span className="stat-value">{value}</span>
+          {selectedCharacter && (
+            <div className="stats-panel">
+              <h2 className="stats-title">Character Stats</h2>
+              <div className="stats-list">
+                {Object.entries(selectedCharacter.stats).map(([key, value]) => (
+                  <div key={key} className="stat-row">
+                    <span className="stat-label">{key.toUpperCase()}</span>
+                    <div className="stat-bar">
+                      <div
+                        className="stat-fill"
+                        style={{ width: `${value}%` }}
+                      ></div>
+                    </div>
+                    <span className="stat-value">{value}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
+          <button
+            onClick={() => setMusicOn((prev) => !prev)}
+            className={`music-btn ${theme}`}
+          >
+            {musicOn ? <TbMusic /> : <TbMusicOff />}
+          </button>
+
+          {selected && (
+            <button className="confirm-btn">Confirm Selection</button>
+          )}
         </div>
       )}
-      <button
-              onClick={() => setMusicOn((prev) => !prev)}
-              className={`music-btn ${theme}`}
-            >
-              {musicOn ? <TbMusic /> : <TbMusicOff />}
-            </button>
-
-      {selected && <button className="confirm-btn">Confirm Selection</button>}
-      </div>)}
     </div>
   );
 }

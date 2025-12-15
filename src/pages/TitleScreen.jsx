@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "./TitleScreen.css";
 import "../index.css";
 import { TbMusic, TbMusicOff } from "react-icons/tb";
-import header from "../assets/title.png";
+import header from "../assets/title.webp";
 import menuMusic from "../music/menu.mp3";
 
 export default function TitleScreen({ theme, setTheme, onStart }) {
