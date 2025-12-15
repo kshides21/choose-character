@@ -11,19 +11,19 @@ import introMusic from "../music/story.mp3";
 const slides = [
   {
     image: queen,
-    text: "Long ago, the Kingdom of Ashfall once flourished in peace, uniting dwarves, elves, and humanity under a shared banner of prosperity. However, this era of harmony was shattered following the coronation of Queen Lyra. Her initial wise governance quickly warped into cold, tyrannical rule...",
+    text: "Long ago, the Kingdom of Ashfell once flourished in peace, uniting dwarves, elves, and humanity under a shared banner of prosperity. However, this era of harmony was shattered following the coronation of Queen Lyra. Her initial wise governance quickly warped into a cold, tyrannical rule...",
   },
   {
     image: army,
-    text: "She raised an army, fueled by ambition and dark magic. The court became a hub of sinister compliance, with powerful warriors, mages, and officials now enslaved to the Queen's hidden, malevolent will.",
+    text: "She raised an army, fueled by ambition and dark magic. The court became a hub of sinister compliance. Powerful warriors, mages, and officials were now enslaved to the Queen's hidden, malevolent will...",
   },
   {
     image: united,
-    text: "Now, our heroes must unite against the Queen and her magic. Venture into the darkening kingdom to discover the true nature of the Queen's army, and break her supernatural hold before all of Ashfall is permanently lost to the encroaching shadow.",
+    text: "Our heroes must unite against the Queen and her magic. You must venture into the darkening kingdom to discover the true nature of the Queen's army. Break her supernatural hold before all of Ashfell is permanently lost to the encroaching shadow.",
   },
 ];
 
-export default function IntroScreen({ theme, onComplete }) {
+export default function IntroScreen({ theme, onContinue }) {
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(null);
@@ -65,9 +65,18 @@ export default function IntroScreen({ theme, onComplete }) {
     setStarted(true);
   };
 
+  const prevSlide = () => {
+    setNextIndex(index - 1);
+
+    setTimeout(() => {
+      setIndex(index - 1);
+      setNextIndex(null);
+    }, 800);
+  };
+
   const nextSlide = () => {
     if (index >= slides.length - 1) {
-      onComplete();
+      onContinue();
       return;
     }
 
@@ -112,10 +121,18 @@ export default function IntroScreen({ theme, onComplete }) {
           <p key={index} className="intro-text">
             {slides[index].text}
           </p>
+          <div className="button-container">
+            <button
+              className={`next-btn ${index === 0 ? "back-btn" : ""}`}
+              onClick={prevSlide}
+            >
+              Back
+            </button>
 
-          <button className="next-btn" onClick={nextSlide}>
-            {index === slides.length - 1 ? "Continue" : "Next"}
-          </button>
+            <button className="next-btn" onClick={nextSlide}>
+              {index === slides.length - 1 ? "Continue" : "Next"}
+            </button>
+          </div>
         </div>
       )}
       <button

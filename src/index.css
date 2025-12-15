@@ -1,3 +1,28 @@
+:root {
+  --font-title: 'Cinzel', serif;
+  --font-body: 'Crimson Pro', serif;
+}
+
+body {
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+}
+
+h1, h2, h3, .title, .subtitle {
+  font-family: var(--font-title);
+  letter-spacing: 0.08em;
+}
+
+.intro-text {
+  font-style: italic;
+}
+
+button {
+  font-family: var(--font-title);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .app-root {
   min-height: 100vh;
   transition: background-color 0.6s ease, color 0.6s ease;
@@ -6,8 +31,10 @@
 .app-root.day {
   --bg-main: #f5f7fa;
   --panel-bg: #ffffff;
-  --text-main: #111;
+  --text-main: #111111;
   --accent: #facc15;
+  --theme: #ff0101;
+  --pulse: #ff0101;
 }
 
 .app-root.night {
@@ -15,14 +42,16 @@
   --panel-bg: #1a1a22;
   --text-main: #ffffff;
   --accent: #facc15;
+  --theme: #ff0101;
+  --pulse: var(--accent);
 }
 
 .music-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   background-color: #000;
   color: #fff;
   border: none;
@@ -39,4 +68,18 @@
 .music-btn.night {
   background-color: #fff;
   color: #000;
+}
+
+.home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  background: transparent;
+  color: var(--text-main);
+  border: none;
+  padding: 2px 0;
+  cursor: pointer;
+  font-size: 28px;
+  padding-left: 12px;
 }

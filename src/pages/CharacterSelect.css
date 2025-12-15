@@ -8,6 +8,40 @@
   opacity: 0;
 }
 
+.intro-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--bg-main)  40%, #ff0101);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.intro-plead {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 500px;
+    color: var(--text-main);
+    margin-bottom: 56px;
+    animation: fadeIn 0.6s ease;
+}
+
+.begin-btn {
+  font-size: 22px;
+  padding: 16px 48px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #facc15;
+  color: #000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeIn 0.6s ease;
+}
+
 .title {
   font-size: 42px;
   font-weight: bold;
@@ -47,6 +81,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 8px;
+  color: #ffffff;
 }
 
 .character-cards {
@@ -56,8 +91,8 @@
 }
 
 .character-card.selected {
-  border-color: #facc15;
-  box-shadow: 0 0 18px #facc15;
+  border-color: var(--pulse);
+  box-shadow: 0 0 24px var(--pulse);
   transform: scale(1.05);
   animation: pulseGlow 1.4s ease-in-out infinite;
 }
@@ -102,12 +137,14 @@
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #ffffff;
 }
 
 .stats-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  color: #ffffff;
 }
 
 .stat-row {
@@ -132,7 +169,7 @@
 }
 
 .stat-fill {
-  background: #facc15;
+  background: var(--pulse);
   height: 100%;
   transition: width 0.4s ease;
 }
@@ -151,6 +188,7 @@
   transition: 0.35s ease;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
+  color: #ffffff;
 }
 
 .hover-info {
@@ -160,6 +198,7 @@
   transition: 0.35s ease;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
+  color: #ffffff;
 }
 
 .abilities-locked {
@@ -208,7 +247,7 @@
 }
 
 .character-locked {
-  opacity: 0.5;
+  opacity: 0.85;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -248,13 +287,13 @@
 
 @keyframes pulseGlow {
   0% {
-    box-shadow: 0 0 12px #facc15;
+    box-shadow: 0 0 12px var(--pulse);
   }
   50% {
-    box-shadow: 0 0 22px #ffea62;
+    box-shadow: 0 0 22px var(--pulse);
   }
   100% {
-    box-shadow: 0 0 12px #facc15;
+    box-shadow: 0 0 12px var(--pulse);
   }
 }
 
@@ -273,7 +312,6 @@
     position: static;
     transform: none;
     background: rgba(0, 0, 0, 0.3);
-    color: #fff;
     z-index: 1;
   }
   .character-card {

@@ -3,13 +3,14 @@ import { useState } from 'react';
 import "./index.css";
 import CharacterSelect from './pages/CharacterSelect';
 import TitleScreen from './pages/TitleScreen';
-import PlayerSetup from './pages/PlayerIntro';
+import PlayerIntro from './pages/PlayerIntro';
 import IntroScreen from './pages/IntroScreen';
 import ScreenFade from './UX/ScreenFade';
+import { FaHome } from "react-icons/fa";
 
 export default function App() {
   const [gamePhase, setGamePhase] = useState("title");
-  const [theme, setTheme] = useState("day");
+  const [theme, setTheme] = useState("night");
   const [playerName, setPlayerName] = useState("");
   const [activePhase, setActivePhase] = useState("title");
 
@@ -24,6 +25,13 @@ export default function App() {
 
   return (
     <div className={`app-root ${theme}`}>
+      <button
+        className="home-btn"
+        onClick={() => transitionTo("title")}
+      >
+        <FaHome />
+      </button>
+
       {gamePhase === "title" && (
         <ScreenFade active={activePhase === "title"}>
           <TitleScreen
@@ -36,13 +44,13 @@ export default function App() {
 
       {gamePhase === "intro" && (
         <ScreenFade active={activePhase === "intro"}>
-          <IntroScreen theme={theme} onContinue={() => transitionTo("playerSetup")} />
+          <IntroScreen theme={theme} onContinue={() => transitionTo("playerIntro")} />
         </ScreenFade>
       )}
 
-      {gamePhase === "playerSetup" && (
-        <ScreenFade active={activePhase === "playerSetup"}>
-          <PlayerSetup
+      {gamePhase === "playerIntro" && (
+        <ScreenFade active={activePhase === "playerIntro"}>
+          <PlayerIntro
             theme={theme}
             playerName={playerName}
             setPlayerName={setPlayerName}
@@ -53,7 +61,7 @@ export default function App() {
 
       {gamePhase === "characterSelect" && (
         <ScreenFade active={activePhase === "characterSelect"}>
-          <CharacterSelect theme={theme} />
+          <CharacterSelect theme={theme} playerName={playerName}/>
         </ScreenFade>
       )}
     </div>

@@ -11,7 +11,7 @@ export default function TitleScreen({ theme, setTheme, onStart }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio(menuMusic); 
+    audioRef.current = new Audio(menuMusic);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
 
@@ -38,8 +38,12 @@ export default function TitleScreen({ theme, setTheme, onStart }) {
       <div className="title-content">
         <div className="header-container">
           <div className="img-container">
-            <img className="header-img" src={header} alt="Game Header" />
-            <h1 className={`game-title ${theme}`}>Shadows Over Ashfall</h1>
+            <img
+              className={`header-img ${theme}`}
+              src={header}
+              alt="Game Header"
+            />
+            <h1 className={`game-title ${theme}`}>Shadows Over Ashfell</h1>
           </div>
         </div>
         <p className={`subtitle ${theme}`}>

@@ -1,4 +1,6 @@
-export default function PlayerSetup({ playerName, setPlayerName, onContinue }) {
+import "./PlayerIntro.css";
+
+export default function PlayerIntro({ playerName, setPlayerName, onContinue }) {
   return (
     <div className="player-setup">
       <h2>What is your name, hero?</h2>

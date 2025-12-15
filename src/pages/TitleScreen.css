@@ -32,6 +32,11 @@
   max-height: 420px;
   display: block;
   border-radius: 24px;
+  border: 4px solid #fff;
+}
+
+.header-img.night {
+  border: 4px solid #ff0101
 }
 
 .game-title {
@@ -73,11 +78,6 @@
   color: #ff0101;
   background-size: cover;
   background-position: center;
-}
-
-.subtitle.night {
-  text-shadow: 2px 2px 8px #fff;
-  color: #000;
 }
 
 .game-title.night {

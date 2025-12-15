@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./CharacterSelect.css";
 import warrior from "../assets/warrior.png";
 import mage from "../assets/mage.png";
@@ -13,6 +13,9 @@ import sorcerer from "../assets/sorcerer.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { TbMusic, TbMusicOff } from "react-icons/tb";
+import characterMusic from "../music/character.wav";
 
 const characters = [
   {
@@ -170,7 +173,51 @@ function getSlidesToShow(width) {
   return 4;
 }
 
-const SimpleSlider = ({ selected, setSelected }) => {
+function NextArrow({ className, style, onClick, theme }) {
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        borderRadius: "50%",
+        color: theme === "day" ? "#f5f7fa" : "#111111",
+        background: theme === "day" ? "#f5f7fa" : "#111111",
+        zoom: "2.5",
+        zIndex: 2,
+        paddingTop: "1.8px",
+        margin: " 0 18px",
+      }}
+      onClick={onClick}
+    >
+      <FaChevronRight />
+    </div>
+  );
+}
+
+function PrevArrow({ className, style, onClick, theme }) {
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        borderRadius: "50%",
+        color: theme === "day" ? "#f5f7fa" : "#111111",
+        background: theme === "day" ? "#f5f7fa" : "#111111",
+        zoom: "2.5",
+        zIndex: 2,
+        paddingTop: "1.8px",
+        margin: " 0 18px",
+      }}
+      onClick={onClick}
+    >
+      <FaChevronLeft />
+    </div>
+  );
+}
+
+const SimpleSlider = ({ selected, setSelected, theme }) => {
   const [slidesToShow, setSlidesToShow] = useState(
     getSlidesToShow(window.innerWidth)
   );
@@ -188,6 +235,8 @@ const SimpleSlider = ({ selected, setSelected }) => {
     speed: 500,
     slidesToShow,
     slidesToScroll: 1,
+    nextArrow: <NextArrow theme={theme} />,
+    prevArrow: <PrevArrow theme={theme} />,
   };
 
   return (
@@ -240,9 +289,12 @@ const SimpleSlider = ({ selected, setSelected }) => {
   );
 };
 
-export default function CharacterSelect() {
+export default function CharacterSelect( {theme, playerName} ) {
   const [selected, setSelected] = useState(null);
+  const [beginChoose, setBeginChoose] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [musicOn, setMusicOn] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -252,9 +304,44 @@ export default function CharacterSelect() {
 
   const selectedCharacter = characters.find((c) => c.id === selected);
 
+  useEffect(() => {
+      audioRef.current = new Audio(characterMusic);
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.5;
+  
+      return () => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current = null;
+        }
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (!audioRef.current) return;
+  
+      if (musicOn) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }, [musicOn]);
+
   return (
     <div className="character-screen">
-      <h1 className="title">Choose Your Hero</h1>
+      {!beginChoose && (
+        <div className="intro-overlay">
+          <h1 className="intro-plead">Get ready to take down the Queen, {playerName}! Ashfell is counting on you.</h1>
+          <button className="begin-btn" onClick={() => {
+            setMusicOn(true);
+            setBeginChoose(true);
+          }}>
+            Embark
+          </button>
+        </div>
+      )}
+      {beginChoose && (<div>
+        <h1 className="title">Choose Your Hero</h1>
 
       <SimpleSlider
         selected={selected}
@@ -281,8 +368,15 @@ export default function CharacterSelect() {
           </div>
         </div>
       )}
+      <button
+              onClick={() => setMusicOn((prev) => !prev)}
+              className={`music-btn ${theme}`}
+            >
+              {musicOn ? <TbMusic /> : <TbMusicOff />}
+            </button>
 
       {selected && <button className="confirm-btn">Confirm Selection</button>}
+      </div>)}
     </div>
   );
 }
