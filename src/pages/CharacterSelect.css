@@ -19,13 +19,13 @@
   animation: fadeIn 0.8s ease forwards;
 }
 
-.intro-plead {
+.character-plead {
     font-size: 28px;
     font-weight: bold;
     text-align: center;
     max-width: 500px;
     color: var(--text-main);
-    margin-bottom: 56px;
+    margin-bottom: 36px;
     animation: fadeIn 0.6s ease;
 }
 
@@ -317,6 +317,9 @@
   .character-card {
     margin: 24px;
   }
+  .character-plead {
+    max-width: 440px;
+  }
 }
 
 @media (max-width: 512px) {
@@ -325,5 +328,13 @@
   }
   .ability {
     padding: 2px 4px;
+  }
+  .hover-abilities{
+    display: none;
+  }
+  .hover-desc {
+    padding: 8px 12px;
+    margin: 6px 12px 12px;
+    padding-bottom: 12px;
   }
 }

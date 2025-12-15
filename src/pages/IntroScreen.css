@@ -71,7 +71,6 @@
 .button-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
 }
 
 .next-btn {
@@ -107,7 +106,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px solid #fff;
+  border: 4px solid var(--text-main);
 }
 
 .image-frame {
@@ -156,23 +155,22 @@
 }
 
 @media (max-width: 716px) {
-  .image-frame {
-    width: 320px;
-    max-height: 320px;
-    overflow: hidden;
-  }
-  .intro-image {
-    max-height: 320px;
-    overflow: hidden;
-  }
   .image-wrapper {
-    width: 320px;
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: 88px;
   }
   .button-container {
-    margin-bottom: 48px
+    margin-bottom: 48px;
   }
   .next-btn {
     padding: 10px 28px;
     font-size: 14px;
   }
+  .intro-plead {
+    max-width: 300px;
+  }
+  .next-btn:hover {
+  background: var(--accent);
+}
 }

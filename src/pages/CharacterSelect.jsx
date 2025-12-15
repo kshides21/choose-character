@@ -181,8 +181,7 @@ function NextArrow({ className, style, onClick, theme }) {
         ...style,
         display: "block",
         borderRadius: "50%",
-        color: theme === "day" ? "#f5f7fa" : "#111111",
-        background: theme === "day" ? "#f5f7fa" : "#111111",
+        backgroundColor: theme === "day" ? "#f5f7fa" : "#111111",
         zoom: "2.5",
         zIndex: 2,
         paddingTop: "1.8px",
@@ -203,8 +202,7 @@ function PrevArrow({ className, style, onClick, theme }) {
         ...style,
         display: "block",
         borderRadius: "50%",
-        color: theme === "day" ? "#f5f7fa" : "#111111",
-        background: theme === "day" ? "#f5f7fa" : "#111111",
+        backgroundColor: theme === "day" ? "#f5f7fa" : "#111111",
         zoom: "2.5",
         zIndex: 2,
         paddingTop: "1.8px",
@@ -331,7 +329,7 @@ export default function CharacterSelect( {theme, playerName} ) {
     <div className="character-screen">
       {!beginChoose && (
         <div className="intro-overlay">
-          <h1 className="intro-plead">Get ready to take down the Queen, {playerName}! Ashfell is counting on you.</h1>
+          <h1 className="character-plead">Get ready to take down the Queen, {playerName}! Ashfell is counting on you.</h1>
           <button className="begin-btn" onClick={() => {
             setMusicOn(true);
             setBeginChoose(true);

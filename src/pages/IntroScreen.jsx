@@ -67,11 +67,8 @@ export default function IntroScreen({ theme, onContinue }) {
 
   const prevSlide = () => {
     setNextIndex(index - 1);
-
-    setTimeout(() => {
-      setIndex(index - 1);
-      setNextIndex(null);
-    }, 800);
+    setIndex(index - 1);
+    setNextIndex(null);
   };
 
   const nextSlide = () => {
@@ -81,11 +78,8 @@ export default function IntroScreen({ theme, onContinue }) {
     }
 
     setNextIndex(index + 1);
-
-    setTimeout(() => {
-      setIndex(index + 1);
-      setNextIndex(null);
-    }, 800);
+    setIndex(index + 1);
+    setNextIndex(null);
   };
 
   return (
