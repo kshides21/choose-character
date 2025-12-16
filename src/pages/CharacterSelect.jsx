@@ -32,6 +32,7 @@ const characters = [
       defense: 85,
       speed: 40,
     },
+    status: "unlocked",
   },
   {
     id: "shifter",
@@ -47,6 +48,7 @@ const characters = [
       defense: 65,
       speed: 80,
     },
+    status: "unlocked",
   },
   {
     id: "mage",
@@ -61,6 +63,7 @@ const characters = [
       defense: 30,
       speed: 60,
     },
+    status: "unlocked",
   },
   {
     id: "elf",
@@ -76,6 +79,7 @@ const characters = [
       defense: 80,
       speed: 90,
     },
+    status: "unlocked",
   },
   {
     id: "dwarf",
@@ -90,6 +94,7 @@ const characters = [
       defense: 80,
       speed: 50,
     },
+    status: "unlocked",
   },
   {
     id: "ranger",
@@ -105,6 +110,7 @@ const characters = [
       defense: 50,
       speed: 90,
     },
+    status: "unlocked",
   },
   {
     id: "friar",
@@ -120,6 +126,7 @@ const characters = [
       defense: 0,
       speed: 0,
     },
+    status: "locked",
   },
   {
     id: "assassin",
@@ -134,6 +141,7 @@ const characters = [
       defense: 0,
       speed: 0,
     },
+    status: "locked",
   },
   {
     id: "sorcerer",
@@ -149,6 +157,7 @@ const characters = [
       defense: 0,
       speed: 0,
     },
+    status: "locked",
   },
   {
     id: "dragonkin",
@@ -163,6 +172,7 @@ const characters = [
       defense: 0,
       speed: 0,
     },
+    status: "locked",
   },
 ];
 
@@ -245,10 +255,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
             className={`character-card ${
               selected === char.id ? "selected" : ""
             } ${
-              char.id === "dragonkin" ||
-              char.id === "sorcerer" ||
-              char.id === "assassin" ||
-              char.id === "friar"
+              char.status === "locked"
                 ? "character-locked"
                 : ""
             }`}
@@ -260,10 +267,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
               className={`${
                 selected === char.id ? "selected-info" : "hover-info"
               } ${
-                char.id === "dragonkin" ||
-                char.id === "sorcerer" ||
-                char.id === "assassin" ||
-                char.id === "friar"
+                char.status === "locked"
                   ? "abilities-locked"
                   : ""
               }`}
@@ -381,7 +385,9 @@ export default function CharacterSelect({ theme, playerName }) {
           </button>
 
           {selected && (
-            <button className="confirm-btn">Confirm Selection</button>
+            <button className={`confirm-btn ${selectedCharacter?.status}`}>
+              Confirm Selection
+            </button>
           )}
         </div>
       )}

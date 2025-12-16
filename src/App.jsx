@@ -6,13 +6,14 @@ import TitleScreen from './pages/TitleScreen';
 import PlayerIntro from './pages/PlayerIntro';
 import IntroScreen from './pages/IntroScreen';
 import ScreenFade from './UX/ScreenFade';
+import ItemSelect from "./pages/ItemSelect";
 import { FaHome } from "react-icons/fa";
 
 export default function App() {
-  const [gamePhase, setGamePhase] = useState("title");
+  const [gamePhase, setGamePhase] = useState("itemSelect");
   const [theme, setTheme] = useState("night");
   const [playerName, setPlayerName] = useState("");
-  const [activePhase, setActivePhase] = useState("title");
+  const [activePhase, setActivePhase] = useState("itemSelect");
 
   const transitionTo = (next) => {
     setActivePhase(null);
@@ -62,6 +63,12 @@ export default function App() {
       {gamePhase === "characterSelect" && (
         <ScreenFade active={activePhase === "characterSelect"}>
           <CharacterSelect theme={theme} playerName={playerName}/>
+        </ScreenFade>
+      )}
+
+      {gamePhase === "itemSelect" && (
+        <ScreenFade active={activePhase === "itemSelect"}>
+          <ItemSelect theme={theme} playerName={playerName}/>
         </ScreenFade>
       )}
     </div>

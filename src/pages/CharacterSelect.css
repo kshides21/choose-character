@@ -183,7 +183,7 @@
 
 .selected-info {
   opacity: 1;
-  transform: translateY(10px);
+  transform: translateY(-10px);
   pointer-events: none;
   transition: 0.35s ease;
   background: rgba(0, 0, 0, 0.3);
@@ -219,7 +219,6 @@
 .hover-desc {
   font-size: 14px;
   opacity: 0.85;
-  margin: 6px 0 12px;
 }
 
 .hover-abilities {
@@ -228,7 +227,6 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 8px;
   padding-bottom: 12px;
 }
 
@@ -248,6 +246,12 @@
 
 .character-locked {
   opacity: 0.85;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.locked {
+  opacity: 0.5;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -320,6 +324,14 @@
   .character-plead {
     max-width: 440px;
   }
+  .hover-abilities{
+    display: none;
+  }
+  .hover-desc {
+    padding: 8px 12px;
+    margin: 6px 12px 12px;
+    padding-bottom: 12px;
+  }
 }
 
 @media (max-width: 512px) {
@@ -328,13 +340,5 @@
   }
   .ability {
     padding: 2px 4px;
-  }
-  .hover-abilities{
-    display: none;
-  }
-  .hover-desc {
-    padding: 8px 12px;
-    margin: 6px 12px 12px;
-    padding-bottom: 12px;
   }
 }
