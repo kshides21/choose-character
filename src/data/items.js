@@ -19,7 +19,6 @@ import pen from "../assets/pen.webp";
 import charm from "../assets/charm.webp";
 import journal from "../assets/journal.webp";
 
-
 export const ITEMS = {
   weapon: [
     {
@@ -29,10 +28,10 @@ export const ITEMS = {
       image: pickaxe,
       description: "Forged in the frozen north.",
       stats: {
-        hp: +5,
-        attack: +15,
-        defense: -5,
-        speed: -5,
+        hp: +1,
+        attack: +3,
+        defense: -1,
+        speed: -1,
       },
     },
     {
@@ -42,10 +41,10 @@ export const ITEMS = {
       image: spear,
       description: "A spear crackling with electrical energy.",
       stats: {
-        hp: +10,
-        attack: +10,
-        defense: -15,
-        speed: -10,
+        hp: +2,
+        attack: +2,
+        defense: -3,
+        speed: -2,
       },
     },
     {
@@ -55,10 +54,10 @@ export const ITEMS = {
       image: crossbow,
       description: "A crossbow forged from the depths of Hades.",
       stats: {
-        hp: -20,
-        attack: +25,
-        defense: -15,
-        speed: -5,
+        hp: -4,
+        attack: +5,
+        defense: -3,
+        speed: -1,
       },
     },
     {
@@ -66,12 +65,12 @@ export const ITEMS = {
       name: "Iron-Tipped Arrows",
       category: "weapon",
       image: arrows,
-      description: "Arrows with iron tips for increased penetration.",
+      description: "Arrows with iron tips for increased damage.",
       stats: {
-        hp: -5,
-        attack: +10,
-        defense: -5,
-        speed: +15,
+        hp: -1,
+        attack: +2,
+        defense: -1,
+        speed: +3,
       },
     },
     {
@@ -81,10 +80,10 @@ export const ITEMS = {
       image: daggers,
       description: "Daggers that absorb the powers of the foes they slay.",
       stats: {
-        hp: +20,
-        attack: +10,
-        defense: -10,
-        speed: -15,
+        hp: +4,
+        attack: +2,
+        defense: -2,
+        speed: -3,
       },
     },
   ],
@@ -96,10 +95,10 @@ export const ITEMS = {
       image: shield,
       description: "A shield imbued with holy protection.",
       stats: {
-        hp: +15,
-        attack: -5,
-        defense: +25,
-        speed: -5,
+        hp: +3,
+        attack: -1,
+        defense: +5,
+        speed: -1,
       },
     },
     {
@@ -109,10 +108,10 @@ export const ITEMS = {
       image: cloak,
       description: "Warmth against dark magic.",
       stats: {
-        hp: +10,
-        attack: -15,
-        defense: +20,
-        speed: +5,
+        hp: +2,
+        attack: -3,
+        defense: +4,
+        speed: +1,
       },
     },
     {
@@ -122,10 +121,10 @@ export const ITEMS = {
       image: boots,
       description: "Silent steps for the stealthy.",
       stats: {
-        hp: +5,
-        attack: -5,
-        defense: +10,
-        speed: +15,
+        hp: +1,
+        attack: -1,
+        defense: +2,
+        speed: +3,
       },
     },
     {
@@ -135,10 +134,10 @@ export const ITEMS = {
       image: belt,
       description: "A sturdy belt that enhances the wearer's strength.",
       stats: {
-        hp: +10,
-        attack: +5,
-        defense: +5,
-        speed: -5,
+        hp: +2,
+        attack: +1,
+        defense: +1,
+        speed: -1,
       },
     },
     {
@@ -148,10 +147,10 @@ export const ITEMS = {
       image: helmet,
       description: "A helmet that grants divine protection.",
       stats: {
-        hp: +10,
-        attack: +5,
-        defense: +20,
-        speed: -25,
+        hp: +2,
+        attack: +1,
+        defense: +4,
+        speed: -5,
       },
     },
   ],
@@ -163,10 +162,10 @@ export const ITEMS = {
       image: ring,
       description: "A ring that enhances the wearer's charisma.",
       stats: {
-        hp: -10,
-        attack: -15,
-        defense: +15,
-        speed: +15,
+        hp: -2,
+        attack: -3,
+        defense: +3,
+        speed: +3,
       },
     },
     {
@@ -176,10 +175,10 @@ export const ITEMS = {
       image: scrolls,
       description: "Scrolls containing lost knowledge.",
       stats: {
-        hp: +25,
-        attack: -10,
-        defense: -10,
-        speed: -5,
+        hp: +5,
+        attack: -2,
+        defense: -2,
+        speed: -1,
       },
     },
     {
@@ -189,10 +188,10 @@ export const ITEMS = {
       image: journal,
       description: "A journal that records the dreams of its owner.",
       stats: {
-        hp: +10,
-        attack: -5,
-        defense: +5,
-        speed: +5,
+        hp: +2,
+        attack: -1,
+        defense: +1,
+        speed: +1,
       },
     },
     {
@@ -202,10 +201,10 @@ export const ITEMS = {
       image: locket,
       description: "A locket that contains the wisdom of the ancients.",
       stats: {
-        hp: +10,
-        attack: +5,
-        defense: +10,
-        speed: -15,
+        hp: +2,
+        attack: +1,
+        defense: +2,
+        speed: -3,
       },
     },
     {
@@ -215,10 +214,10 @@ export const ITEMS = {
       image: lamp,
       description: "A lamp that houses a powerful genie.",
       stats: {
-        hp: +15,
-        attack: -5,
-        defense: +10,
-        speed: -15,
+        hp: +3,
+        attack: -1,
+        defense: +2,
+        speed: -3,
       },
     },
   ],
@@ -230,10 +229,10 @@ export const ITEMS = {
       image: amulet,
       description: "An amulet that grants the wearer increased intelligence.",
       stats: {
-        hp: +5,
-        attack: +5,
-        defense: +5,
-        speed: +5,
+        hp: +1,
+        attack: +1,
+        defense: +1,
+        speed: +1,
       },
     },
     {
@@ -243,10 +242,10 @@ export const ITEMS = {
       image: pen,
       description: "A pen that writes with the ink of the gods.",
       stats: {
-        hp: +20,
-        attack: -10,
-        defense: -15,
-        speed: +5,
+        hp: +4,
+        attack: -2,
+        defense: -3,
+        speed: +1,
       },
     },
     {
@@ -256,10 +255,10 @@ export const ITEMS = {
       image: map,
       description: "A map that reveals the secrets of the universe.",
       stats: {
-        hp: +10,
-        attack: -25,
-        defense: +5,
-        speed: +15,
+        hp: +2,
+        attack: -5,
+        defense: +1,
+        speed: +3,
       },
     },
     {
@@ -269,10 +268,10 @@ export const ITEMS = {
       image: compass,
       description: "A compass that will always point you onward.",
       stats: {
-        hp: +15,
-        attack: -20,
-        defense: -5,
-        speed: +25,
+        hp: +3,
+        attack: -4,
+        defense: -1,
+        speed: +5,
       },
     },
     {
@@ -282,10 +281,10 @@ export const ITEMS = {
       image: charm,
       description: "A charm that brings good fortune.",
       stats: {
-        hp: +10,
-        attack: -20,
-        defense: +15,
-        speed: +10,
+        hp: +2,
+        attack: -4,
+        defense: +3,
+        speed: +2,
       },
     },
   ],

@@ -26,11 +26,13 @@ function ItemCategory({ title, items, selectedItem, onSelect }) {
             <div className="item-stats-container">
               {Object.entries(item.stats).map(([stat, value]) => (
                 <div key={stat} className="item-stat">
-                  <span className="item-stat-label">{stat.toUpperCase()}</span>
+                  {value < 0 ?
+                  <span className="item-stat-label negative">{stat.toUpperCase()}</span>
+                  : (<span className="item-stat-label positive">{stat.toUpperCase()}</span>)}
                   {value < 0 ? (
                     <span className="item-stat-value negative">{value}</span>
                   ) : (
-                    <span className="item-stat-value">+{value}</span>
+                    <span className="item-stat-value positive">+{value}</span>
                   )}
                 </div>
               ))}
@@ -149,7 +151,7 @@ useEffect(() => {
       )}
 
       {beginChoose && 
-      <div>
+      <div className="item-selection">
       <h1 className="title items-title">Starting Items</h1>
 
       {Object.entries(ITEMS).map(([category, items]) => (
@@ -170,7 +172,10 @@ useEffect(() => {
                   {musicOn ? <TbMusic /> : <TbMusicOff />}
                 </button>
 
-      <button className={`ready-btn ${!isReady ? "disabled" : ""}`} disabled={!isReady} onClick={onConfirm}>
+      <button className={`ready-btn ${!isReady ? "disabled" : "able"}`} disabled={!isReady} onClick={() => {
+        setItemSelectPage(false);
+        onConfirm();
+      }}>
         Ready for Battle
       </button>
       </div>}

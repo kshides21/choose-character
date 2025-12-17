@@ -7,10 +7,18 @@
   padding: 24px;
 }
 
+.item-selection, .items-screen {
+  background: var(--bg-main);
+}
+
 .category-title {
   font-size: 1.5rem;
   margin: 12px 0; 
   margin-left: 64px;
+}
+
+.category-title, .items-title {
+  color: var(--text-main);
 }
 
 .items-title {
@@ -94,8 +102,14 @@
   font-family: "Crimson";
 }
 
-.item-stat-value.negative {
-  color: red;
+.negative {
+  color: black;
+  text-shadow: 0 0 4px red;
+}
+
+.positive {
+  color: white;
+  text-shadow: 0 0 4px green;
 }
 
 .ready-btn {
@@ -130,6 +144,10 @@
 .disabled {
   background: #888;
   pointer-events: none;
+}
+
+.able {
+  color: var(--bg-main);
 }
 
 @keyframes pulseGlow {

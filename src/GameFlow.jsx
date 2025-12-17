@@ -8,10 +8,11 @@ import ScreenFade from "./UX/ScreenFade";
 import ItemSelect from "./pages/ItemSelect";
 import StatsBar from "./components/StatsBar";
 import { FaHome } from "react-icons/fa";
+import Loading from "./pages/Loading";
 
 export default function GameFlow() {
-  const [gamePhase, setGamePhase] = useState("title");
-  const [activePhase, setActivePhase] = useState("title");
+  const [gamePhase, setGamePhase] = useState("loading");
+  const [activePhase, setActivePhase] = useState("loading");
   const [character, setCharacter] = useState(null);
   const [playerStats, setPlayerStats] = useState(null);
   const [itemSelectPage, setItemSelectPage] = useState(false);
@@ -85,6 +86,14 @@ export default function GameFlow() {
             playerStats={playerStats}
             setPlayerStats={setPlayerStats}
             onConfirm={() => transitionTo("loading")}
+          />
+        </ScreenFade>
+      )}
+
+      {gamePhase === "loading" && (
+        <ScreenFade active={activePhase === "loading"}>
+          <Loading
+            onConfirm={() => transitionTo("credits")}
           />
         </ScreenFade>
       )}

@@ -1,0 +1,117 @@
+.loading-title {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0 0 28px black;
+    animation: Pulse 4s infinite;
+    z-index: 999;
+}
+
+.map-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    background-size: cover;
+    height: 100vh;
+}
+
+.loading-phone-map {
+    display: none;
+}
+
+.loading-tip {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  font-size: 1.3rem;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 8px black;
+  max-width: 350px;
+  z-index: 999;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.loading-tip.fade-in {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.loading-tip.fade-out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 24px;
+  z-index: 999;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    to right,
+    #ff0101,
+    #fd8a8a
+  );
+  z-index: 999;
+  transition: width 0.1s linear;
+}
+
+.credits-btn {
+  position: absolute;
+  bottom: calc(50% - 26px);
+  left: calc(50% - 122px);
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: #facc15;
+  color: #000;
+  animation: fadeIn 0.8s ease forwards;
+  z-index: 999;
+}
+
+.credits-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+}
+
+
+@keyframes Pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@media (max-width: 716px) {
+    .loading-phone-map {
+        display: block;
+    }
+    .loading-map {
+        display: none;
+    }
+}
