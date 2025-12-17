@@ -1,180 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import "./CharacterSelect.css";
-import warrior from "../assets/warrior.webp";
-import mage from "../assets/mage.webp";
-import ranger from "../assets/ranger.webp";
-import elf from "../assets/elf.webp";
-import dwarf from "../assets/dwarf.webp";
-import shifter from "../assets/shifter.webp";
-import assassin from "../assets/assassin.webp";
-import friar from "../assets/friar.webp";
-import dragonkin from "../assets/dragonkin.webp";
-import sorcerer from "../assets/sorcerer.webp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { characters } from "../data/characters";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { TbMusic, TbMusicOff } from "react-icons/tb";
 import characterMusic from "../music/character.wav";
-
-const characters = [
-  {
-    id: "warrior",
-    title: "Warrior",
-    name: "Kaelen",
-    image: warrior,
-    description:
-      "A strong melee fighter with high defense and powerful strikes.",
-    abilities: ["War Cry", "Shield Bash"],
-    stats: {
-      hp: 90,
-      attack: 70,
-      defense: 85,
-      speed: 40,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "shifter",
-    title: "Shifter",
-    name: "Dahlia",
-    image: shifter,
-    description:
-      "A unique sorceress with shapeshifting abilities and cunning damage potential.",
-    abilities: ["Fiery Beauty", "Severing Heads"],
-    stats: {
-      hp: 70,
-      attack: 75,
-      defense: 65,
-      speed: 80,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "mage",
-    title: "Mage",
-    name: "Sorrel",
-    image: mage,
-    description: "A master of arcane arts with devastating spell power.",
-    abilities: ["Fireball", "Arcane Shield"],
-    stats: {
-      hp: 50,
-      attack: 100,
-      defense: 30,
-      speed: 60,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "elf",
-    title: "Elf",
-    name: "Faelyn",
-    image: elf,
-    description:
-      "A stealthy elf with agility and precision guided by the Elvish spirits.",
-    abilities: ["Shadow Strike", "Nature's Grasp"],
-    stats: {
-      hp: 55,
-      attack: 70,
-      defense: 80,
-      speed: 90,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "dwarf",
-    title: "Dwarf",
-    name: "Gideon",
-    image: dwarf,
-    description: "A sturdy dwarf with unmatched resilience and strength.",
-    abilities: ["Mighty Blow", "Battle Roar"],
-    stats: {
-      hp: 85,
-      attack: 70,
-      defense: 80,
-      speed: 50,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "ranger",
-    title: "Ranger",
-    name: "Thalion",
-    image: ranger,
-    description:
-      "A swift ranger with remarkable stealth, versatility, and keen senses.",
-    abilities: ["Rapid Shot", "Eagle Eye"],
-    stats: {
-      hp: 65,
-      attack: 80,
-      defense: 50,
-      speed: 90,
-    },
-    status: "unlocked",
-  },
-  {
-    id: "friar",
-    title: "Friar",
-    name: "Alaric",
-    image: friar,
-    description:
-      "A wise friar with healing capabilities and a deep connection to nature.",
-    abilities: ["Unlock to View", "Abilities"],
-    stats: {
-      hp: 0,
-      attack: 0,
-      defense: 0,
-      speed: 0,
-    },
-    status: "locked",
-  },
-  {
-    id: "assassin",
-    title: "Assassin",
-    name: "Zara",
-    image: assassin,
-    description: "An assassin whose stealth and intelligence is unmatched.",
-    abilities: ["Unlock to View", "Abilities"],
-    stats: {
-      hp: 0,
-      attack: 0,
-      defense: 0,
-      speed: 0,
-    },
-    status: "locked",
-  },
-  {
-    id: "sorcerer",
-    title: "Sorcerer",
-    name: "Vespero",
-    image: sorcerer,
-    description:
-      "A master of binding spells with power of the runes on his side.",
-    abilities: ["Unlock to View", "Abilities"],
-    stats: {
-      hp: 0,
-      attack: 0,
-      defense: 0,
-      speed: 0,
-    },
-    status: "locked",
-  },
-  {
-    id: "dragonkin",
-    title: "Dragonkin",
-    name: "Drakkon",
-    image: dragonkin,
-    description: "A dragonkin warrior who pulls strength from the underworld.",
-    abilities: ["Unlock to View", "Abilities"],
-    stats: {
-      hp: 0,
-      attack: 0,
-      defense: 0,
-      speed: 0,
-    },
-    status: "locked",
-  },
-];
 
 function getSlidesToShow(width) {
   if (width <= 768) return 1;
@@ -254,11 +86,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
           <div
             className={`character-card ${
               selected === char.id ? "selected" : ""
-            } ${
-              char.status === "locked"
-                ? "character-locked"
-                : ""
-            }`}
+            } ${char.status === "locked" ? "character-locked" : ""}`}
             onClick={() => setSelected(char.id)}
           >
             <h2 className="character-name">{char.title}</h2>
@@ -266,11 +94,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
             <div
               className={`${
                 selected === char.id ? "selected-info" : "hover-info"
-              } ${
-                char.status === "locked"
-                  ? "abilities-locked"
-                  : ""
-              }`}
+              } ${char.status === "locked" ? "abilities-locked" : ""}`}
             >
               <h2 className="hover-name">{char.name}</h2>
               <p className="hover-desc">{char.description}</p>
@@ -291,7 +115,7 @@ const SimpleSlider = ({ selected, setSelected, theme }) => {
   );
 };
 
-export default function CharacterSelect({ theme, playerName }) {
+export default function CharacterSelect({ theme, playerName, onConfirm }) {
   const [selected, setSelected] = useState(null);
   const [beginChoose, setBeginChoose] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -384,8 +208,11 @@ export default function CharacterSelect({ theme, playerName }) {
             {musicOn ? <TbMusic /> : <TbMusicOff />}
           </button>
 
-          {selected && (
-            <button className={`confirm-btn ${selectedCharacter?.status}`}>
+          {selectedCharacter && (
+            <button
+              className={`confirm-btn ${selectedCharacter.status}`}
+              onClick={() => onConfirm(selectedCharacter)}
+            >
               Confirm Selection
             </button>
           )}

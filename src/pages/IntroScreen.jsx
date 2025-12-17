@@ -24,7 +24,7 @@ const slides = [
   },
 ];
 
-export default function IntroScreen({ theme, onContinue }) {
+export default function IntroScreen({ theme, onComplete }) {
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(null);
@@ -83,7 +83,7 @@ export default function IntroScreen({ theme, onContinue }) {
 
   const nextSlide = () => {
     if (index >= slides.length - 1) {
-      onContinue();
+      onComplete();
       return;
     }
 

@@ -1,120 +1,169 @@
+import warrior from "../assets/warrior.webp";
+import mage from "../assets/mage.webp";
+import ranger from "../assets/ranger.webp";
+import elf from "../assets/elf.webp";
+import dwarf from "../assets/dwarf.webp";
+import shifter from "../assets/shifter.webp";
+import assassin from "../assets/assassin.webp";
+import friar from "../assets/friar.webp";
+import dragonkin from "../assets/dragonkin.webp";
+import sorcerer from "../assets/sorcerer.webp";
+
 export const characters = [
   {
-    id: "kaelen",
+    id: "warrior",
+    title: "Warrior",
     name: "Kaelen",
-    class: "Warrior",
-    portrait: "/images/warrior.webp",
+    image: warrior,
+    description:
+      "A strong melee fighter with high defense and powerful strikes.",
+    abilities: ["War Cry", "Shield Bash"],
     stats: {
       hp: 90,
       attack: 70,
       defense: 85,
       speed: 40,
     },
-    description: "A seasoned fighter with unmatched defense and strength.",
-    abilities: [
-      { name: "Shield Bash", description: "Stuns enemies briefly." },
-      { name: "War Cry", description: "Boosts nearby allies." },
-    ],
+    status: "unlocked",
   },
   {
-    id: "sorrel",
-    name: "Sorrel",
-    class: "Mage",
-    portrait: "/images/mage.webp",
-    stats: {
-      hp: 50,
-      attack: 100,
-      defense: 30,
-      speed: 60,
-    },
-    description: "A master of arcane arts with devastating spell power.",
-    abilities: [
-      { name: "Fireball", description: "High-damage explosive spell." },
-      { name: "Arcane Shield", description: "Reduces incoming damage." },
-    ],
-  },
-  {
-    id: "Thalion",
-    name: "Thalion",
-    class: "Ranger",
-    portrait: "/images/ranger.webp",
-    stats: {
-      hp: 65,
-      attack: 80,
-      defense: 50,
-      speed: 90,
-    },
-    description: "A swift archer with remarkable agility and precision.",
-    abilities: [
-      { name: "Rapid Shot", description: "Fires a burst of arrows." },
-      { name: "Eagle Eye", description: "Increases critical hit chance." },
-    ],
-  },
-  {
-    id: "Faelyn",
-    name: "Faelyn",
-    class: "Elf",
-    portrait: "/images/elf.webp",
-    stats: {
-      hp: 55,
-      attack: 70,
-      defense: 80,
-      speed: 90,
-    },
-    description: "A stealthy elf with unmatched agility and precision.",
-    abilities: [
-      {
-        name: "Shadow Strike",
-        description: "Volleys arrows with deadly precision.",
-      },
-      { name: "Nature's Grasp", description: "Roots enemies in place." },
-    ],
-  },
-  {
-    id: "Gideon",
-    name: "Gideon",
-    class: "Dwarf",
-    portrait: "/images/dwarf.webp",
-    stats: {
-      hp: 85,
-      attack: 70,
-      defense: 80,
-      speed: 50,
-    },
-    description: "A sturdy dwarf with unmatched resilience and strength.",
-    abilities: [
-      {
-        name: "Mighty Blow",
-        description: "Deals heavy damage to a single target.",
-      },
-      {
-        name: "Battle Roar",
-        description: "Inspires allies, increasing their attack power.",
-      },
-    ],
-  },
-  {
-    id: "Dahlia",
+    id: "shifter",
+    title: "Shifter",
     name: "Dahlia",
-    class: "Shifter",
-    portrait: "/images/shifter.webp",
+    image: shifter,
+    description:
+      "A unique sorceress with shapeshifting abilities and cunning damage potential.",
+    abilities: ["Fiery Beauty", "Severing Heads"],
     stats: {
       hp: 70,
       attack: 75,
       defense: 65,
       speed: 80,
     },
-    description: "A jack of all trades with shapeshifting abilities.",
-    abilities: [
-      {
-        name: "Fiery Beauty",
-        description:
-          "Put enemies into trance briefly before bursting to flames.",
-      },
-      {
-        name: "Severing Heads",
-        description: "Temporarily encompass numerous bodies at one time",
-      },
-    ],
+    status: "unlocked",
+  },
+  {
+    id: "mage",
+    title: "Mage",
+    name: "Sorrel",
+    image: mage,
+    description: "A master of arcane arts with devastating spell power.",
+    abilities: ["Fireball", "Arcane Shield"],
+    stats: {
+      hp: 50,
+      attack: 100,
+      defense: 30,
+      speed: 60,
+    },
+    status: "unlocked",
+  },
+  {
+    id: "elf",
+    title: "Elf",
+    name: "Faelyn",
+    image: elf,
+    description:
+      "A stealthy elf with agility and precision guided by the Elvish spirits.",
+    abilities: ["Shadow Strike", "Nature's Grasp"],
+    stats: {
+      hp: 55,
+      attack: 70,
+      defense: 80,
+      speed: 90,
+    },
+    status: "unlocked",
+  },
+  {
+    id: "dwarf",
+    title: "Dwarf",
+    name: "Gideon",
+    image: dwarf,
+    description: "A sturdy dwarf with unmatched resilience and strength.",
+    abilities: ["Mighty Blow", "Battle Roar"],
+    stats: {
+      hp: 85,
+      attack: 70,
+      defense: 80,
+      speed: 50,
+    },
+    status: "unlocked",
+  },
+  {
+    id: "ranger",
+    title: "Ranger",
+    name: "Thalion",
+    image: ranger,
+    description:
+      "A swift ranger with remarkable stealth, versatility, and keen senses.",
+    abilities: ["Rapid Shot", "Eagle Eye"],
+    stats: {
+      hp: 65,
+      attack: 80,
+      defense: 50,
+      speed: 90,
+    },
+    status: "unlocked",
+  },
+  {
+    id: "friar",
+    title: "Friar",
+    name: "Alaric",
+    image: friar,
+    description:
+      "A wise friar with healing capabilities and a deep connection to nature.",
+    abilities: ["Unlock to View", "Abilities"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+    status: "locked",
+  },
+  {
+    id: "assassin",
+    title: "Assassin",
+    name: "Zara",
+    image: assassin,
+    description: "An assassin whose stealth and intelligence is unmatched.",
+    abilities: ["Unlock to View", "Abilities"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+    status: "locked",
+  },
+  {
+    id: "sorcerer",
+    title: "Sorcerer",
+    name: "Vespero",
+    image: sorcerer,
+    description:
+      "A master of binding spells with power of the runes on his side.",
+    abilities: ["Unlock to View", "Abilities"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+    status: "locked",
+  },
+  {
+    id: "dragonkin",
+    title: "Dragonkin",
+    name: "Drakkon",
+    image: dragonkin,
+    description: "A dragonkin warrior who pulls strength from the underworld.",
+    abilities: ["Unlock to View", "Abilities"],
+    stats: {
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+    },
+    status: "locked",
   },
 ];
