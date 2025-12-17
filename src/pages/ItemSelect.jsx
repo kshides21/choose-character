@@ -46,6 +46,7 @@ export default function ItemSelect({
   setPlayerStats,
   theme,
   character,
+  setItemSelectPage,
   onConfirm,
 }) {
   const [musicOn, setMusicOn] = useState(false);
@@ -131,13 +132,14 @@ useEffect(() => {
     <div className="items-screen">
       {!beginChoose && (
         <div className="intro-overlay">
-          <h1 className="character-plead">
+          <h1 className="character-plead item-plead">
             Welcome brave {character.title}! The journey is only just beginning. Equip yourself wisely for the challenges ahead.
           </h1>
           <button
-            className="begin-btn"
+            className="begin-btn item-btn"
             onClick={() => {
               setMusicOn(true);
+              setItemSelectPage(true);
               setBeginChoose(true);
             }}
           >

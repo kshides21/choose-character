@@ -116,6 +116,17 @@
   transition: background 0.3s ease;
 }
 
+.item-plead {
+  max-width: 380px;
+  font-size: 22px;
+}
+
+.item-btn {
+  padding: 16px 20px;
+  width: 300px;
+  font-size: 20px;
+}
+
 .disabled {
   background: #888;
   pointer-events: none;

@@ -14,6 +14,7 @@ export default function GameFlow() {
   const [activePhase, setActivePhase] = useState("title");
   const [character, setCharacter] = useState(null);
   const [playerStats, setPlayerStats] = useState(null);
+  const [itemSelectPage, setItemSelectPage] = useState(false);
   const [theme, setTheme] = useState("night");
   const [playerName, setPlayerName] = useState("");
 
@@ -67,7 +68,6 @@ export default function GameFlow() {
             theme={theme}
             playerName={playerName}
             onConfirm={(chosenCharacter) => {
-            console.log("Chosen character:", chosenCharacter);
               setCharacter(chosenCharacter);
               setPlayerStats({ ...chosenCharacter.stats });
               transitionTo("itemSelect");
@@ -81,6 +81,7 @@ export default function GameFlow() {
           <ItemSelect
             character={character}
             theme={theme}
+            setItemSelectPage={setItemSelectPage}
             playerStats={playerStats}
             setPlayerStats={setPlayerStats}
             onConfirm={() => transitionTo("loading")}
@@ -88,7 +89,7 @@ export default function GameFlow() {
         </ScreenFade>
       )}
 
-      {playerStats && <StatsBar stats={playerStats} />}
+      {playerStats && itemSelectPage && <StatsBar stats={playerStats} />}
       
     </div>
   );

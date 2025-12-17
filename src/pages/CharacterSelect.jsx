@@ -187,15 +187,15 @@ export default function CharacterSelect({ theme, playerName, onConfirm }) {
               <h2 className="stats-title">Character Stats</h2>
               <div className="stats-list">
                 {Object.entries(selectedCharacter.stats).map(([key, value]) => (
-                  <div key={key} className="stat-row">
-                    <span className="stat-label">{key.toUpperCase()}</span>
-                    <div className="stat-bar">
+                  <div key={key} className="stat-row char-stat">
+                    <span className="char-label">{key.toUpperCase()}</span>
+                    <div className="stat-bar char-bar">
                       <div
                         className="stat-fill"
                         style={{ width: `${value}%` }}
                       ></div>
                     </div>
-                    <span className="stat-value">{value}</span>
+                    <span className="char-value">{value}</span>
                   </div>
                 ))}
               </div>
