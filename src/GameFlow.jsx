@@ -10,8 +10,8 @@ import StatsBar from "./components/StatsBar";
 import { FaHome } from "react-icons/fa";
 
 export default function GameFlow() {
-  const [gamePhase, setGamePhase] = useState("characterSelect");
-  const [activePhase, setActivePhase] = useState("characterSelect");
+  const [gamePhase, setGamePhase] = useState("title");
+  const [activePhase, setActivePhase] = useState("title");
   const [character, setCharacter] = useState(null);
   const [playerStats, setPlayerStats] = useState(null);
   const [theme, setTheme] = useState("night");
