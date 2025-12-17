@@ -89,11 +89,43 @@
   z-index: 999;
 }
 
+.confirm-btn {
+    bottom: 20%;
+}
+
 .credits-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
 }
 
+.credits-screen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.credits-text {
+    text-align: center;
+}
+
+.credits-subtitle {
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 30%;
+    text-align: center;
+}
+
+.credits-title {
+    position: absolute;
+    top: 20%;
+}
 
 @keyframes Pulse {
     0% {
