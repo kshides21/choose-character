@@ -105,7 +105,7 @@ export default function IntroScreen({ theme, onComplete }) {
 
       {started && !imagesReady && (
         <div className="loading-overlay">
-          <h1>Dark magic is brewing</h1>
+          <h1 className="loading-intro-title">Dark magic is brewing</h1>
           <br />
           <div className="dot-wrapper">
             <FaCircle className="loading-icon one" />

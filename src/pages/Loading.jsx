@@ -1,23 +1,21 @@
-
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import "./Loading.css";
 import map from "../assets/loadingMap.webp";
 import phoneMap from "../assets/phoneMap.webp";
 
+const TIPS = [
+  "Gain experience to increase your stat gauges.",
+  "Utility items can affect characters differently.",
+  "Loot abandoned buildings for valuable resources.",
+  "Relics often come with powerful tradeoffs.",
+  "Choose wisely - not every fight can be won in combat.",
+];
+
 export default function Loading({ onConfirm }) {
-    const [tipIndex, setTipIndex] = useState(0);
-    const [isFading, setIsFading] = useState(false);
-    const [progress, setProgress] = useState(0);
-    const [loadingComplete, setLoadingComplete] = useState(false);
-
-  const TIPS = [
-    "Gain experience to increase your stat gauges.",
-    "Utility items can affect characters differently.",
-    "Loot abandoned buildings for valuable resources.",
-    "Relics often come with powerful tradeoffs.",
-    "Choose wisely - not every fight can be won in combat.",
-  ];
-
+  const [tipIndex, setTipIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loadingComplete, setLoadingComplete] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,10 +59,7 @@ export default function Loading({ onConfirm }) {
           </h3>
 
           <div className="progress-bar">
-            <div
-              className="progress-fill"
-              style={{ width: `${progress}%` }}
-            />
+            <div className="progress-fill" style={{ width: `${progress}%` }} />
           </div>
         </>
       ) : (

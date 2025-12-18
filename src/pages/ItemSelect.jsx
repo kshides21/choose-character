@@ -3,6 +3,7 @@ import "./ItemSelect.css";
 import { ITEMS } from "../data/items";
 import { TbMusic, TbMusicOff } from "react-icons/tb";
 import itemMusic from "../music/menu.mp3";
+import StatsBar from "../components/StatsBar";
 
 function ItemCategory({ title, items, selectedItem, onSelect }) {
   return (
@@ -19,16 +20,22 @@ function ItemCategory({ title, items, selectedItem, onSelect }) {
             onClick={() => onSelect(item)}
           >
             <div className="item-title-wrapper">
-            <h1 className="item-title">{item.name}</h1>
-            <img className="item-image" src={item.image} alt={item.name} />
-            <h4 className="item-description">{item.description}</h4>
+              <h1 className="item-title">{item.name}</h1>
+              <img className="item-image" src={item.image} alt={item.name} />
+              <h4 className="item-description">{item.description}</h4>
             </div>
             <div className="item-stats-container">
               {Object.entries(item.stats).map(([stat, value]) => (
                 <div key={stat} className="item-stat">
-                  {value < 0 ?
-                  <span className="item-stat-label negative">{stat.toUpperCase()}</span>
-                  : (<span className="item-stat-label positive">{stat.toUpperCase()}</span>)}
+                  {value < 0 ? (
+                    <span className="item-stat-label negative">
+                      {stat.toUpperCase()}
+                    </span>
+                  ) : (
+                    <span className="item-stat-label positive">
+                      {stat.toUpperCase()}
+                    </span>
+                  )}
                   {value < 0 ? (
                     <span className="item-stat-value negative">{value}</span>
                   ) : (
@@ -46,11 +53,13 @@ function ItemCategory({ title, items, selectedItem, onSelect }) {
 
 export default function ItemSelect({
   setPlayerStats,
+  playerStats,
   theme,
   character,
-  setItemSelectPage,
   onConfirm,
 }) {
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [itemSelectPage, setItemSelectPage] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
   const [beginChoose, setBeginChoose] = useState(false);
   const audioRef = useRef(null);
@@ -62,80 +71,106 @@ export default function ItemSelect({
   });
   const prevItemsRef = useRef(selectedItems);
 
-useEffect(() => {
-  const prevItems = prevItemsRef.current;
+  useEffect(() => {
+    const duration = 6000;
+    const intervalTime = 1000;
+    const increment = 1000 / (duration / intervalTime);
 
-  Object.keys(selectedItems).forEach((category) => {
-    const prevItem = prevItems[category];
-    const nextItem = selectedItems[category];
+    const interval = setInterval(() => {
+      setLoadingComplete((prev) => {
+        if (prev + increment >= 1000) {
+          clearInterval(interval);
+          return 1000;
+        }
+        return prev + increment;
+      });
+    }, intervalTime);
 
-    if (prevItem?.id === nextItem?.id) return;
-
-    setPlayerStats((stats) => {
-      const updated = { ...stats };
-
-      if (prevItem) {
-        Object.entries(prevItem.stats).forEach(([stat, value]) => {
-          updated[stat] -= value;
-        });
-      }
-
-      if (nextItem) {
-        Object.entries(nextItem.stats).forEach(([stat, value]) => {
-          updated[stat] += value;
-        });
-      }
-
-      return updated;
-    });
-  });
-
-  prevItemsRef.current = selectedItems;
-}, [selectedItems, setPlayerStats]);
-
+    return () => clearInterval(interval);
+  }, [beginChoose]);
 
   useEffect(() => {
-      audioRef.current = new Audio(itemMusic);
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.5;
-  
-      return () => {
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current = null;
+    const prevItems = prevItemsRef.current;
+
+    Object.keys(selectedItems).forEach((category) => {
+      const prevItem = prevItems[category];
+      const nextItem = selectedItems[category];
+
+      if (prevItem?.id === nextItem?.id) return;
+
+      setPlayerStats((stats) => {
+        const updated = { ...stats };
+
+        if (prevItem) {
+          Object.entries(prevItem.stats).forEach(([stat, value]) => {
+            updated[stat] -= value;
+          });
         }
-      };
-    }, []);
-  
-    useEffect(() => {
-      if (!audioRef.current) return;
-  
-      if (musicOn) {
-        audioRef.current.play();
-      } else {
+
+        if (nextItem) {
+          Object.entries(nextItem.stats).forEach(([stat, value]) => {
+            updated[stat] += value;
+          });
+        }
+
+        return updated;
+      });
+    });
+
+    prevItemsRef.current = selectedItems;
+  }, [selectedItems, setPlayerStats]);
+
+  useEffect(() => {
+    audioRef.current = new Audio(itemMusic);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
+    return () => {
+      if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current = null;
       }
-    }, [musicOn]);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (musicOn) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [musicOn]);
 
   const selectItem = (item) => {
-  setSelectedItems((prev) => {
-    const previousItem = prev[item.category];
-    const isRemoving = previousItem?.id === item.id;
+    setSelectedItems((prev) => {
+      const previousItem = prev[item.category];
+      const isRemoving = previousItem?.id === item.id;
 
-    return {
-      ...prev,
-      [item.category]: isRemoving ? null : item,
-    };
-  });
-};
+      return {
+        ...prev,
+        [item.category]: isRemoving ? null : item,
+      };
+    });
+  };
   const isReady = Object.values(selectedItems).every(Boolean);
+
+  // Show loading overlay for 5 seconds after user clicks the button
+  useEffect(() => {
+    if (beginChoose) {
+      const timer = setTimeout(() => setLoadingComplete(true), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [beginChoose]);
 
   return (
     <div className="items-screen">
       {!beginChoose && (
         <div className="intro-overlay">
           <h1 className="character-plead item-plead">
-            Welcome brave {character.title}! The journey is only just beginning. Equip yourself wisely for the challenges ahead.
+            Welcome brave {character.title}! The journey is only just beginning.
+            Equip yourself wisely for the challenges ahead.
           </h1>
           <button
             className="begin-btn item-btn"
@@ -143,6 +178,7 @@ useEffect(() => {
               setMusicOn(true);
               setItemSelectPage(true);
               setBeginChoose(true);
+              setLoadingComplete(false); // Ensure loading starts
             }}
           >
             Choose Starting Items
@@ -150,35 +186,47 @@ useEffect(() => {
         </div>
       )}
 
-      {beginChoose && 
-      <div className="item-selection">
-      <h1 className="title items-title">Starting Items</h1>
+      {beginChoose && (
+        <div className="item-selection">
+          {!loadingComplete && beginChoose && (
+            <div className="loading-item-overlay">
+              <h1 className="loading-item-title">Loading items...</h1>
+            </div>
+          )}
+          <h1 className="title items-title">Starting Items</h1>
 
-      {Object.entries(ITEMS).map(([category, items]) => (
-        <ItemCategory
-          key={category}
-          title={category.toUpperCase()}
-          category={category}
-          items={items}
-          selectedItem={selectedItems[category]}
-          onSelect={selectItem}
-        />
-      ))}
+          {Object.entries(ITEMS).map(([category, items]) => (
+            <ItemCategory
+              key={category}
+              title={category.toUpperCase()}
+              category={category}
+              items={items}
+              selectedItem={selectedItems[category]}
+              onSelect={selectItem}
+            />
+          ))}
 
-      <button
-                  onClick={() => setMusicOn((prev) => !prev)}
-                  className={`music-btn ${theme}`}
-                >
-                  {musicOn ? <TbMusic /> : <TbMusicOff />}
-                </button>
+          <button
+            onClick={() => setMusicOn((prev) => !prev)}
+            className={`music-btn ${theme}`}
+          >
+            {musicOn ? <TbMusic /> : <TbMusicOff />}
+          </button>
 
-      <button className={`ready-btn ${!isReady ? "disabled" : "able"}`} disabled={!isReady} onClick={() => {
-        setItemSelectPage(false);
-        onConfirm();
-      }}>
-        Ready for Battle
-      </button>
-      </div>}
+          <button
+            className={`ready-btn ${!isReady ? "disabled" : "able"}`}
+            disabled={!isReady}
+            onClick={() => {
+              setItemSelectPage(false);
+              onConfirm();
+            }}
+          >
+            Ready for Battle
+          </button>
+        </div>
+      )}
+
+      {playerStats && itemSelectPage && <StatsBar stats={playerStats} />}
     </div>
   );
 }

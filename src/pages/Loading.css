@@ -146,4 +146,7 @@
     .loading-map {
         display: none;
     }
+    .credits-subtitle {
+        max-width: 350px;
+    }
 }

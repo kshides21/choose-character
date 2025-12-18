@@ -19,6 +19,10 @@
   animation: fadeIn 0.8s ease forwards;
 }
 
+.loading-intro-title {
+  text-align: center;
+}
+
 .intro-plead {
     font-size: 28px;
     font-weight: bold;
@@ -143,7 +147,7 @@
 .loading-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--bg-main);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,4 +218,8 @@
   .next-btn:hover {
   background: var(--accent);
 }
+  .intro-text {
+    font-size: 16px;
+    max-width: 360px;
+  }
 }
