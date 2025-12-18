@@ -56,6 +56,7 @@ export default function ItemSelect({
   playerStats,
   theme,
   character,
+  onBack,
   onConfirm,
 }) {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -156,10 +157,9 @@ export default function ItemSelect({
   };
   const isReady = Object.values(selectedItems).every(Boolean);
 
-  // Show loading overlay for 5 seconds after user clicks the button
   useEffect(() => {
     if (beginChoose) {
-      const timer = setTimeout(() => setLoadingComplete(true), 5000);
+      const timer = setTimeout(() => setLoadingComplete(true), 7000);
       return () => clearTimeout(timer);
     }
   }, [beginChoose]);
@@ -178,7 +178,7 @@ export default function ItemSelect({
               setMusicOn(true);
               setItemSelectPage(true);
               setBeginChoose(true);
-              setLoadingComplete(false); // Ensure loading starts
+              setLoadingComplete(false);
             }}
           >
             Choose Starting Items
@@ -188,7 +188,7 @@ export default function ItemSelect({
 
       {beginChoose && (
         <div className="item-selection">
-          {!loadingComplete && beginChoose && (
+          {!loadingComplete && (
             <div className="loading-item-overlay">
               <h1 className="loading-item-title">Loading items...</h1>
             </div>
@@ -212,17 +212,29 @@ export default function ItemSelect({
           >
             {musicOn ? <TbMusic /> : <TbMusicOff />}
           </button>
+          <div className="selection-button-container">
+            <button
+              className={`char-back-btn ready-btn able`}
+              onClick={() => {
+                setPlayerStats(null);
+                setItemSelectPage(false);
+                onBack();
+              }}
+            >
+              Back
+            </button>
 
-          <button
-            className={`ready-btn ${!isReady ? "disabled" : "able"}`}
-            disabled={!isReady}
-            onClick={() => {
-              setItemSelectPage(false);
-              onConfirm();
-            }}
-          >
-            Ready for Battle
-          </button>
+            <button
+              className={`ready-btn ${!isReady ? "disabled" : "able"}`}
+              disabled={!isReady}
+              onClick={() => {
+                setItemSelectPage(false);
+                onConfirm();
+              }}
+            >
+              Ready for Battle
+            </button>
+          </div>
         </div>
       )}
 

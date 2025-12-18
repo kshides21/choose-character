@@ -113,9 +113,6 @@
 }
 
 .ready-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 12px 24px;
   margin: 12px 4px; 
   margin-bottom: 36px;
@@ -125,8 +122,6 @@
   color: #111111;
   cursor: pointer;
   position: relative;
-  left: 50%;
-  transform: translateX(-100px);
   transition: background 0.3s ease;
 }
 
@@ -170,6 +165,20 @@
   animation: Pulse 3s ease infinite;
 }
 
+.selection-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    max-width: 400px;
+    position: relative;
+    left: calc(50% - 200px);
+}
+
+.back-btn {
+  background-color: var(--pulse);
+}
+
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 12px var(--pulse);
@@ -207,5 +216,20 @@
   }
   .item-card {
     max-height: 520px;
+  }
+}
+
+@media (max-width: 512px) {
+  .selection-button-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    width: 100%;
+    max-width: 240px;
+    gap: 2px;
+    left: calc(50% - 120px);
+    margin-bottom: 36px;
+  }
+  .ready-btn {
+    margin-bottom: 8px;
   }
 }

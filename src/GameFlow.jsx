@@ -38,6 +38,7 @@ export default function GameFlow() {
             theme={theme}
             setTheme={setTheme}
             onStart={() => transitionTo("intro")}
+            onCredits={() => transitionTo("credits")}
           />
         </ScreenFade>
       )}
@@ -83,6 +84,7 @@ export default function GameFlow() {
             theme={theme}
             playerStats={playerStats}
             setPlayerStats={setPlayerStats}
+            onBack={() => transitionTo("characterSelect")}
             onConfirm={() => transitionTo("loading")}
           />
         </ScreenFade>

@@ -6,7 +6,7 @@ import { TbMusic, TbMusicOff } from "react-icons/tb";
 import header from "../assets/title.webp";
 import menuMusic from "../music/menu.mp3";
 
-export default function TitleScreen({ theme, setTheme, onStart }) {
+export default function TitleScreen({ theme, setTheme, onStart, onCredits }) {
   const [musicOn, setMusicOn] = useState(false);
   const audioRef = useRef(null);
 
@@ -65,9 +65,17 @@ export default function TitleScreen({ theme, setTheme, onStart }) {
           </button>
         </div>
 
+        <div className="title-btn-container">
+
         <button className={`start-btn ${theme}`} onClick={onStart}>
           Start Game
         </button>
+
+        <button className={`start-btn ${theme} end-credits-btn`} onClick={onCredits}>
+          Credits
+        </button>
+
+        </div>
 
         <button
           onClick={() => setMusicOn((prev) => !prev)}

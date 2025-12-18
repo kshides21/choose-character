@@ -1,5 +1,5 @@
 .title-screen {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,6 +132,17 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
 }
 
+.title-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  gap: 12px;
+  max-width: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media (max-width: 716px) {
   .subtitle {
     transform: translateY(24px);
@@ -142,6 +153,29 @@
   }
   .game-title {
     font-size: 2.5rem;
+  }
+  .title-btn-container {
+    max-width: 240px;
+    margin-top: 2px;
+  }
+  .theme-toggle button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  .start-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+  p.subtitle {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 512px) {
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
