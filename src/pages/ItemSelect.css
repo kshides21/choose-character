@@ -175,10 +175,6 @@
     left: calc(50% - 200px);
 }
 
-.back-btn {
-  background-color: var(--pulse);
-}
-
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 12px var(--pulse);
