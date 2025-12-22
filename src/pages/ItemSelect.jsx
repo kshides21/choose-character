@@ -64,13 +64,13 @@ export default function ItemSelect({
   const [musicOn, setMusicOn] = useState(false);
   const [beginChoose, setBeginChoose] = useState(false);
   const audioRef = useRef(null);
-  const prevItemsRef = useRef(selectedItems);
   const [selectedItems, setSelectedItems] = useState({
     weapon: null,
     armor: null,
     relic: null,
     utility: null,
   });
+  const prevItemsRef = useRef(selectedItems);
 
   useEffect(() => {
     const duration = 6000;
